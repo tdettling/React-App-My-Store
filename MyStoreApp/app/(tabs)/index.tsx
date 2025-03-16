@@ -1,26 +1,46 @@
-import { StyleSheet, Text, View, Button, TextInput, TouchableOpacity, ScrollView, Modal, ImageBackground } from 'react-native';
-import { useReducer, useState } from 'react';
-import styles from '../../styles'
-import { FlatList } from 'react-native-gesture-handler';
-import { StatusBar } from 'expo-status-bar';
 import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack'
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import   { NavigationIndependentTree} from '@react-navigation/native';
 
-import Category from '../../Screens/Category'
-import ProductList from '../../Screens/ProductList'
-import AddProduct from '../../Screens/AddProduct'
-import ProductDetails from '../../Screens/ProductDetails'
-import EditProduct from '../../Screens/EditProduct'
+
+import Category from '../../Screens/Category';
+import ProductList from '../../Screens/ProductList';
+import AddProduct from '../../Screens/AddProduct';
+import ProductDetails from '../../Screens/ProductDetails';
+import EditProduct from '../../Screens/EditProduct';
+import { AntDesign } from '@expo/vector-icons';
+import { ProductProvider } from '../../Context/ProductContext'
 
 const Stack = createNativeStackNavigator();
 
-export default function App() {
+function App() {
   return (
-    <NavigationContainer> 
+    <NavigationIndependentTree>
+      <NavigationContainer>
+        <Stack.Navigator initialRouteName='ProductCategories'>
+        <Stack.Screen 
+          name = 'ProductCategories' 
+          component = {Category} 
+          options = {{ title : 'Type of Products' }}/>
 
-      <Text> testing </Text>
-    </NavigationContainer>
+          <Stack.Screen name = 'Add' component = {AddProduct} />
+          <Stack.Screen name = 'Edit' component = {EditProduct} />
+          <Stack.Screen 
+            name = 'List' 
+            component = {ProductList} />
+          <Stack.Screen name = 'Details' component = {ProductDetails} />
+
+        </Stack.Navigator>
+      </NavigationContainer>
+    </NavigationIndependentTree>
+  );
+}
+
+export default () => {
+  return (
+    <ProductProvider> 
+      <App/>
+    </ProductProvider>
   )
-
-  
 }
