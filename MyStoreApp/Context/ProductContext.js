@@ -1,4 +1,4 @@
-import React, { createContext } from 'react';
+import React, { createContext, useReducer } from 'react';
 
 const ProductContext = createContext();
 
@@ -31,10 +31,56 @@ const Products = [
   { id: 18, category: "Other Accessories/Cables", name: "Belkin 10-Outlet Power Strip", price: 39.99, desc: "10 outlets, surge protection, 6-foot cord" }
 ];
 
+
+
+const reducer = (prodList, action) => {
+
+  switch(action.type){
+    case 'add_product':
+      return [...prodList, action.payload];
+
+    case 'edit_product':
+      return prodList.map ((prod) => prod.id === action.payload.id ? action.payload : prod);
+
+    case 'delete_product':
+      return prodList.filter( (prod) => prod.id !== action.payload);
+
+    default:
+      return prodList;
+  }
+}
+
+
+
+
 export const ProductProvider = (props) => {
-    console.log(props)
+
+  const [productArray, dispatch] = useReducer(reducer, Products);
+
+  function addProductHandler(){
+    return addProduct = (newProd) => {
+      dispatch({type: 'add_product', payload: newProd});
+    }
+  }
+
+  function editProductHandler(){
+    return editProduct = (updatedProd) => {
+      dispatch({type: 'edit_product', payload: updatedProd});
+    }
+  }
+
+  function deleteProductHandler(){
+    return editProduct = (prod_id) => {
+      dispatch({type: 'delete_product', payload: prod_id});
+    }
+  }
+
   return (
-    <ProductContext.Provider value={[ProductCategories, Products] }>
+    <ProductContext.Provider value={{Categories: ProductCategories, 
+                                      ListOfProducts: productArray, 
+                                      addProductFunction: addProductHandler, 
+                                      editProductFunction: editProductHandler,
+                                      deleteProductFunction: deleteProductHandler} }>
       {props.children}
     </ProductContext.Provider>
   );

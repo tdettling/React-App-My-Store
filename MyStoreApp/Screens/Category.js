@@ -8,12 +8,12 @@ import { useContext } from 'react';
 
 
 const Category = (props) => {
-  const [PCategory, PList] = useContext(ProductContext);
+    const {Categories, ListOfProducts, addProductFunction, editProductFunction} = useContext(ProductContext);
 
 
   return (
     <ScrollView>
-      {PCategory.map((item, index) => (
+      {Categories.map((item, index) => (
         <TouchableOpacity key={index} onPress={() => {props.navigation.navigate('List', { productCategory: item }); }}>
           <Text>{item}</Text>
         </TouchableOpacity>

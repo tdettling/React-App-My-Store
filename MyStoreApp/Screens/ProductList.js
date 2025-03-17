@@ -8,12 +8,12 @@ import { useContext } from 'react';
 
 const ProductList = (props) => {
 
-  const [PCategory, PList] = useContext(ProductContext);
+    const {Categories, ListOfProducts, addProductFunction, editProductFunction, deleteProductFunction} = useContext(ProductContext);
 
-  const selectedCategory = props.route.params.productCategory;
+    const selectedCategory = props.route.params.productCategory;
 
   // Filter products by the selected category
-  const categoryProducts = PList.filter((product) => product.category === selectedCategory);
+    const categoryProducts = ListOfProducts.filter((product) => product.category === selectedCategory);
 
   useLayoutEffect(() => {
     props.navigation.setOptions({
@@ -30,11 +30,20 @@ const ProductList = (props) => {
   return (
     <ScrollView>
       {categoryProducts.map((product) => (
-        <TouchableOpacity
-          key={product.id}
-          onPress={() => { props.navigation.navigate('Details', {productItem : product}) }} >
-          <Text style={styles.productName}>{product.name}</Text>
-        </TouchableOpacity>
+        <View style={styles.displayProductListContainer}> 
+                <TouchableOpacity
+                    key={product.id}
+                    onPress={() => { props.navigation.navigate('Details', {productItem : product}) }} >
+                    <Text style={styles.productName}>{product.name}</Text>
+                </TouchableOpacity>
+
+                <TouchableOpacity onPress={ () => {
+                    const delProd = deleteProductFunction();
+                    delProd(product.id);
+                }}>
+                    <AntDesign name="delete" size={24} color='black' />
+                </TouchableOpacity>
+        </View>
       ))}
     </ScrollView>
   );

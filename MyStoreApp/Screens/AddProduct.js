@@ -1,11 +1,47 @@
-import { Text, View } from 'react-native'
 import styles from '../styles'
 
+import { Text, ScrollView, TouchableOpacity, View, Button, TextInput  } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+//const ItemTypes = ["Laptops", "Desktops", "Monitors", "Other Accessories/Cables"];
+
+
+import ProductContext from '../Context/ProductContext';
+import { useContext } from 'react';
+
 const AddProduct = (props) => {
+    const {Categories, ListOfProducts, addProductFunction, editProductFunction} = useContext(ProductContext);
+    const addFunction = addProductFunction();
+
+    let newProduct = {};
+
+    newProduct.id = Math.floor(Math.random() * 100);
+
     return (
-        <Text>
-            Welcome to the AddProduct Screen!
-        </Text>
+        <View>
+            <Text> Product Name: </Text>
+            <TextInput style={styles.textInputStyle}
+                onChangeText = { (newValue) => newProduct.name = newValue }
+            />
+            <Text> Product Price: </Text>
+            <TextInput style={styles.textInputStyle}
+                onChangeText = { (newValue) => newProduct.price = newValue }
+            />
+            <Text> Product Category: </Text>
+            <TextInput style={styles.textInputStyle}
+                onChangeText = { (newValue) => newProduct.category = newValue }
+            />
+            <Text> Product Description: </Text>
+            <TextInput style={styles.textInputStyle}
+                onChangeText = { (newValue) => newProduct.desc = newValue }
+            />
+
+
+            <Button title = 'Add Product' onPress={ () => { 
+                console.log(newProduct)
+                addFunction(newProduct);
+                props.navigation.navigate('List', {productCategory : newProduct.category})
+                }} />
+        </View>
     );
 };
 

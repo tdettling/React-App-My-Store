@@ -71,23 +71,20 @@ const styles = StyleSheet.create({
     fontSize: 20
   },
 
-  textInputStyle: {
-    color: '#000000', 
+textInputStyle: {
+    color: 'black', 
     fontFamily: 'Verdana', 
     fontSize: 13,
     fontStyle: 'italic',
-    height: 40,
-    margin: 11,
-    borderWidth: 5,
-    padding: 8,
+    height: 50,  
+    margin: 20,
+    borderWidth: 2,
+    padding: 12,  
     backgroundColor: '#DDDDDD',
-    paddingLeft: 30, 
-    paddingRight:60,
-    flexDirection: 'row',
-    flexWrap: 'wrap', 
+    textAlignVertical: 'top', 
     textAlign: 'left', 
-    flex: 1, 
-   }, 
+},
+
 
  buttonStyle: {
     flexDirection: 'row',
@@ -242,6 +239,15 @@ titleButtonTextStyle: {
     width: '100%', 
     height: '100%',
   }, 
+
+  displayProductListContainer: {
+    flexDirection: 'row', 
+    borderWidth: 1, 
+    padding: 10, 
+    margin: 10, 
+    justifyContent: 'space-between'
+  }
+
 });
 
 export default styles;

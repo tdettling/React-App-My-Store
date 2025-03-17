@@ -3,19 +3,16 @@ import { useContext, useLayoutEffect } from 'react'
 import styles from '../styles'
 import { AntDesign, Feather } from '@expo/vector-icons';
 
-import DataContext from '../Context/ProductContext';
 
 const ProductDetails = (props) => {
-    const Product = props.route.params.productItem;
-    const v = useContext(DataContext);
 
-    console.log(v);
+    const Product = props.route.params.productItem;
 
     useLayoutEffect(() => {
         props.navigation.setOptions({
             headerRight : () => {
                 return (
-                    <TouchableOpacity onPress={ () => {props.navigation.navigate('Edit')}}>
+                    <TouchableOpacity onPress={ () => {props.navigation.navigate('Edit', {productItem: Product})}}>
                     <Feather name="edit" size={24} color="black" />
                     </TouchableOpacity>
                 )
