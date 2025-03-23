@@ -10,7 +10,11 @@ import AddProduct from '../../Screens/AddProduct';
 import ProductDetails from '../../Screens/ProductDetails';
 import EditProduct from '../../Screens/EditProduct';
 import { AntDesign } from '@expo/vector-icons';
-import { ProductProvider } from '../../Context/ProductContext'
+
+//import { ProductProvider } from '../../Context/ProductContext'
+import { Provider } from 'react-redux';
+import { ProductStore } from '../../Store/ProductStore'
+
 
 const Stack = createNativeStackNavigator();
 
@@ -39,8 +43,8 @@ function App() {
 
 export default () => {
   return (
-    <ProductProvider> 
+    <Provider store={ProductStore}> 
       <App/>
-    </ProductProvider>
+    </Provider>
   )
 }

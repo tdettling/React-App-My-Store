@@ -3,17 +3,19 @@ import { useNavigation } from '@react-navigation/native';
 //const ItemTypes = ["Laptops", "Desktops", "Monitors", "Other Accessories/Cables"];
 
 
-import ProductContext from '../Context/ProductContext';
-import { useContext } from 'react';
+//import ProductContext from '../Context/ProductContext';
+//import { useContext } from 'react';
+
+import { UseSelector, useDispatch, useSelector } from 'react-redux'
 
 
 const Category = (props) => {
-    const {Categories, ListOfProducts, addProductFunction, editProductFunction} = useContext(ProductContext);
-
+    //const {Categories, ListOfProducts, addProductFunction, editProductFunction} = useContext(ProductContext);
+  const {CategoryOfProducts} = useSelector( (state) => state.productData)
 
   return (
     <ScrollView>
-      {Categories.map((item, index) => (
+      {CategoryOfProducts.map((item, index) => (
         <TouchableOpacity key={index} onPress={() => {props.navigation.navigate('List', { productCategory: item }); }}>
           <Text>{item}</Text>
         </TouchableOpacity>

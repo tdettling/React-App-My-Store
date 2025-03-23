@@ -3,8 +3,10 @@ import styles from '../styles';
 import { useLayoutEffect } from 'react';
 import { AntDesign } from '@expo/vector-icons';
 
-import ProductContext from '../Context/ProductContext';
-import { useContext } from 'react';
+//import ProductContext from '../Context/ProductContext';
+//import { useContext } from 'react';
+
+import { useSelector } from 'react-redux';
 
 const ProductList = (props) => {
 
@@ -26,6 +28,8 @@ const ProductList = (props) => {
         }
     });
   }, []);
+
+
 
   return (
     <ScrollView>
