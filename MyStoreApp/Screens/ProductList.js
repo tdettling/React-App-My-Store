@@ -6,13 +6,16 @@ import { AntDesign } from '@expo/vector-icons';
 //import ProductContext from '../Context/ProductContext';
 //import { useContext } from 'react';
 
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { deleteProduct } from '../Store/ProductSlice';
 
 const ProductList = (props) => {
 
-    const {Categories, ListOfProducts, addProductFunction, editProductFunction, deleteProductFunction} = useContext(ProductContext);
+    //const {Categories, ListOfProducts, addProductFunction, editProductFunction, deleteProductFunction} = useContext(ProductContext);
 
     const selectedCategory = props.route.params.productCategory;
+    const {ListOfProducts} = useSelector( (state) => state.productData);
+    const dispatch = useDispatch();
 
   // Filter products by the selected category
     const categoryProducts = ListOfProducts.filter((product) => product.category === selectedCategory);
@@ -42,8 +45,8 @@ const ProductList = (props) => {
                 </TouchableOpacity>
 
                 <TouchableOpacity onPress={ () => {
-                    const delProd = deleteProductFunction();
-                    delProd(product.id);
+                    //const delProd = deleteProductFunction();
+                    dispatch(deleteProduct(product.id));
                 }}>
                     <AntDesign name="delete" size={24} color='black' />
                 </TouchableOpacity>

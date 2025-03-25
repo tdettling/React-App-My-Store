@@ -8,11 +8,14 @@ import { useNavigation } from '@react-navigation/native';
 import ProductContext from '../Context/ProductContext';
 import { useContext } from 'react';
 
+import { useDispatch } from 'react-redux';
+import { editProduct } from '../Store/ProductSlice';
+
 const EditProduct = (props) => {
-    const {Categories, ListOfProducts, addProductFunction, editProductFunction} = useContext(ProductContext);
+    //const {Categories, ListOfProducts, addProductFunction, editProductFunction} = useContext(ProductContext);
 
-    const editFunction = editProductFunction();
-
+    //const editFunction = editProductFunction();
+    const dispatch = useDispatch();
     const Product = props.route.params.productItem;
     // can't edit a const like the video, need ot make a safe copy
     let replacementProduct = { ...Product };
@@ -43,8 +46,9 @@ const EditProduct = (props) => {
 
 
             <Button title = 'Save Changes' onPress={ () => { 
-                console.log(replacementProduct)
-                editFunction(replacementProduct);
+                //console.log(replacementProduct)
+                //editFunction(replacementProduct);
+                dispatch(editProduct(replacementProduct));
                 props.navigation.navigate('List', {productCategory : replacementProduct.category})
                 }} />
         </View>

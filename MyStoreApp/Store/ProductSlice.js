@@ -41,17 +41,31 @@ const ProductSlice = createSlice(
             ListOfProducts: Products, 
             CategoryOfProducts: ProductCategories
         }, 
+
         reducers: {
             //key-vlaue, action type: function
             addProduct: (state, action) => {
-                [...state, action.payload];
+                //[...state, action.payload];
+                state.ListOfProducts.push(action.payload);
             }, 
+            
             editProduct: (state, action) => {
-                state.map ((prod) => prod.id === action.payload.id ? action.payload : prod);
+                //state.map ((prod) => prod.id === action.payload.id ? action.payload : prod);
+                for(let i=0; i< state.ListOfProducts.length; i++){
+                    if(state.ListOfProducts[i].id == action.payload.id){
+                        state.ListOfProducts.splice(i, 1, action.payload)
+                    }
+                }
             }, 
+
             deleteProduct: (state, action) => {
-                state.filter( (prod) => prod.id !== action.payload);
-            }
+                //state.filter( (prod) => prod.id !== action.payload);
+                for(let i = 0; i<state.ListOfProducts.length; i++){
+                    if(state.ListOfProducts[i].id == action.payload){
+                        state.ListOfProducts.splice(i, 1);
+                    }
+                }
+            },
         }
     }, 
 );

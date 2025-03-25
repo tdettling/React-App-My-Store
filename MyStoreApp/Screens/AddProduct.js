@@ -8,12 +8,16 @@ import { useNavigation } from '@react-navigation/native';
 import ProductContext from '../Context/ProductContext';
 import { useContext } from 'react';
 
+import { useDispatch } from 'react-redux';
+import { addProduct } from '../Store/ProductSlice';
+
 const AddProduct = (props) => {
-    const {Categories, ListOfProducts, addProductFunction, editProductFunction} = useContext(ProductContext);
-    const addFunction = addProductFunction();
+    //const {Categories, ListOfProducts, addProductFunction, editProductFunction} = useContext(ProductContext);
+    //const addFunction = addProductFunction();
+
+    const dispatch = useDispatch();
 
     let newProduct = {};
-
     newProduct.id = Math.floor(Math.random() * 100);
 
     return (
@@ -37,8 +41,9 @@ const AddProduct = (props) => {
 
 
             <Button title = 'Add Product' onPress={ () => { 
-                console.log(newProduct)
-                addFunction(newProduct);
+                //console.log(newProduct)
+                //addFunction(newProduct);
+                dispatch(addProduct(newProduct));
                 props.navigation.navigate('List', {productCategory : newProduct.category})
                 }} />
         </View>
