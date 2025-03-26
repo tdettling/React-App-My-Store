@@ -246,8 +246,38 @@ titleButtonTextStyle: {
     padding: 10, 
     margin: 10, 
     justifyContent: 'space-between'
-  }
+  }, 
 
+  itemStyle: {
+    width: '48%', // Keep two items per row
+    minHeight: 80, // Ensures enough space for text
+    marginBottom: 5, // Reduce spacing between rows
+    backgroundColor: 'lightgray',
+    paddingVertical: 15, // Adjust padding for text visibility
+    paddingHorizontal: 5,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 5, // Slightly rounded edges
+  },
+
+  categoryContainer: {
+    flexGrow: 1, 
+    alignItems: 'center',
+  },
+
+  grid: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'space-between',
+    paddingHorizontal: 5, // Reduce space on sides
+    width: '100%',
+  },
+
+  itemTextStyle: {
+    fontSize: 16, // Reduce font size slightly
+    fontWeight: 'bold',
+    textAlign: 'center',
+  },
 });
 
 export default styles;
