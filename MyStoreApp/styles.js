@@ -249,15 +249,15 @@ titleButtonTextStyle: {
   }, 
 
   itemStyle: {
-    width: '48%', // Keep two items per row
-    minHeight: 80, // Ensures enough space for text
-    marginBottom: 5, // Reduce spacing between rows
+    width: '48%', 
+    minHeight: 80, 
+    marginBottom: 5, 
     backgroundColor: 'lightgray',
-    paddingVertical: 15, // Adjust padding for text visibility
+    paddingVertical: 15, 
     paddingHorizontal: 5,
     alignItems: 'center',
     justifyContent: 'center',
-    borderRadius: 5, // Slightly rounded edges
+    borderRadius: 5, 
   },
 
   categoryContainer: {
@@ -269,15 +269,69 @@ titleButtonTextStyle: {
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'space-between',
-    paddingHorizontal: 5, // Reduce space on sides
+    paddingHorizontal: 5, 
     width: '100%',
   },
 
   itemTextStyle: {
-    fontSize: 16, // Reduce font size slightly
+    fontSize: 16, 
     fontWeight: 'bold',
     textAlign: 'center',
   },
+
+viewBackground: {
+    backgroundColor: '#ffffff',
+    padding: 20, 
+    alignItems: 'center', 
+  },
+
+  productTitle: {
+    fontSize: 24,  
+    fontWeight: 'bold',  
+    marginBottom: 10,  
+    textAlign: 'center', 
+  },
+
+  imgStyle: {
+    width: 350, 
+    height: 400, 
+    resizeMode: 'contain', 
+    borderRadius: 10,       
+    alignSelf: 'center',   
+  },
+
+  productSubTitle: {
+    fontSize: 18,  
+    fontWeight: '500',  
+    marginTop: 10, 
+    textAlign: 'center',
+  },
+
+  ratingContainer: {
+    flexDirection: 'row', 
+    justifyContent: 'center',
+    alignItems: 'center', 
+    marginTop: 5,
+  },
+
+  ratingText: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    marginRight: 5,
+  },
+
+  reviewText: {
+    fontSize: 16,
+    color: '#666', 
+  },
+
+  productDesc: {
+    fontSize: 16,
+    textAlign: 'center',
+    marginTop: 10,
+    color: '#333',
+  }
+
 });
 
 export default styles;

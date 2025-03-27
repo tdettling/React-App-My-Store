@@ -7,15 +7,15 @@ const Category = (props) => {
   const { CategoryOfProducts } = useSelector((state) => state.productData);
 
   return (
-    <ScrollView contentContainerStyle={styles.categoryContainer}>
-      <View style={styles.grid}>
+    <ScrollView>
+      <View>
         {CategoryOfProducts.map((item, index) => (
-          <TouchableOpacity 
+          <TouchableOpacity style={styles.displayProductListContainer}
             key={index} 
             onPress={() => props.navigation.navigate('List', { productCategory: item })}
           >
-            <View style={styles.itemStyle}> 
-              <Text style={styles.itemTextStyle} numberOfLines={2}>{item}</Text>
+            <View > 
+              <Text >{item}</Text>
             </View>
           </TouchableOpacity>
         ))}
